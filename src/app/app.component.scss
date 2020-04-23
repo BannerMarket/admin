@@ -1,0 +1,11 @@
+@import "../styles";
+
+.side-menu {
+  width: $side-menu-width;
+  height: 100vh;
+}
+
+.main-content {
+  padding: 44px 88px;
+  box-sizing: border-box;
+}

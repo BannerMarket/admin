@@ -1,3 +1,6 @@
+@import "functions";
+@import "colors";
+
 .page-padding {
   padding: 0 160px;
 }
@@ -45,4 +48,13 @@
   &--pointer {
     cursor: pointer;
   }
+}
+
+.elevated {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 8px 0;
+}
+
+.page-title {
+  color: color(text-main);
+  padding-bottom: 44px;
 }

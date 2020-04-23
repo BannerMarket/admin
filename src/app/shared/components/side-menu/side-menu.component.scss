@@ -1,0 +1,47 @@
+@import "../../../../styles";
+
+.menu {
+  width: $side-menu-width;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 44px 22px;
+
+  &__item {
+    height: 46px;
+    color: color(text-main);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    border-radius: $border-radius-small;
+    margin-bottom: 6px;
+
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: color(grey-shade);
+    }
+
+    &--active {
+      background-color: white;
+      color: color(brand-main);
+
+      svg {
+        stroke: color(brand-main) !important;
+      }
+    }
+
+    svg {
+      height: 16px;
+      width: 16px;
+      margin: 0 16px 0 16px;
+      stroke: color(text-main);
+
+      transition: stroke 0.3s;
+    }
+  }
+}

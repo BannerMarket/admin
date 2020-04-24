@@ -1,44 +1,18 @@
 <div>
   <h1 class="page-title">Translations</h1>
 
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: #F7F7F7" class="flex--align-center">Some item</div>
-  <div style="width: 100%; height: 40px; padding-left: 22px; background: white" class="flex--align-center">Another entry</div>
+  <div class="search">
+    <app-form-input label="search"
+                    placeholder="Enter key, English or Georgian translation..."
+                    (input)="onSearch($event)"></app-form-input>
+  </div>
+
+  <cdk-virtual-scroll-viewport class="list" itemSize="34">
+    <div class="list__item">
+      <app-translation-row [saveButtonLabel]="'Add'"></app-translation-row>
+    </div>
+    <div *cdkVirtualFor="let key of keysToDisplay" class="list__item">
+      <app-translation-row [key]="key" [en]="translations.en[key]" [ge]="translations.ge[key]"></app-translation-row>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>

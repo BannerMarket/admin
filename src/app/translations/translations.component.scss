@@ -1,0 +1,26 @@
+@import "../../styles";
+
+.search {
+  width: 100%;
+  border-radius: $border-radius;
+  border: solid 1px color(grey-shade);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  height: height(input);
+  margin-bottom: 22px;
+}
+
+.list {
+  height: 600px;
+
+  &__item {
+    border-top: solid 1px color(input-border);
+
+    &:last-child {
+      border-bottom: solid 1px color(input-border);
+    }
+    &:nth-child(2n) {
+      background-color: color(grey-shade);
+    }
+  }
+}

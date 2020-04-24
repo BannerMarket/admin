@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-2">
+    <input class="tr__input tr__input--key"
+           type="text"
+           placeholder="Key"
+           [(ngModel)]="key">
+  </div>
+  <div class="col-sm-4">
+    <input class="tr__input"
+           type="text"
+           placeholder="English"
+           [(ngModel)]="en">
+  </div>
+  <div class="col-sm-4">
+    <input class="tr__input"
+           type="text"
+           placeholder="Georgian"
+           [(ngModel)]="ge">
+  </div>
+
+  <div class="col-sm-2">
+    <div class="flex--align-center">
+      <button class="tr__button tr__button--save flex--center flex--fill cursor--pointer">
+        {{saveButtonLabel}}
+      </button>
+      <button class="tr__button tr__button--delete flex--center flex--fill cursor--pointer">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

@@ -2,3 +2,18 @@
 @import "assets/stylesheets/dimentions";
 @import "assets/stylesheets/flexboxgrid.min";
 @import "assets/stylesheets/shared";
+
+@font-face {
+  font-family: 'regular-font';
+  src: url('src/assets/fonts/AirbnbCerealMedium.woff');
+}
+
+@font-face {
+  font-family: 'bold-font';
+  src: url('src/assets/fonts/AirbnbCerealBlack.woff');
+}
+
+@font-face {
+  font-family: 'light-font';
+  src: url('src/assets/fonts/AirbnbCerealLight.woff');
+}

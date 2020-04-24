@@ -20,10 +20,13 @@
 
   <div class="col-sm-2">
     <div class="flex--align-center">
-      <button class="tr__button tr__button--save flex--center flex--fill cursor--pointer">
+      <button class="tr__button tr__button--save flex--center flex--fill cursor--pointer"
+              (click)="onSave()">
         {{saveButtonLabel}}
       </button>
-      <button class="tr__button tr__button--delete flex--center flex--fill cursor--pointer">
+      <button *ngIf="displayDelete"
+              class="tr__button tr__button--delete flex--center flex--fill cursor--pointer"
+              (click)="onDelete()">
         Delete
       </button>
     </div>

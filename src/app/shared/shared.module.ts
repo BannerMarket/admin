@@ -6,6 +6,8 @@ import {ButtonComponent} from './components/reusable/button/button.component';
 import {FormInputComponent} from './components/reusable/form-input/form-input.component';
 import {CheckboxComponent} from './components/reusable/checkbox/checkbox.component';
 import {FormsModule} from '@angular/forms';
+import { NotificationsComponent } from './components/reusable/notifications/notifications.component';
+import { NotificationComponent } from './components/reusable/notifications/notification/notification.component';
 
 @NgModule({
   imports: [
@@ -18,12 +20,16 @@ import {FormsModule} from '@angular/forms';
     ButtonComponent,
     FormInputComponent,
     CheckboxComponent,
+    NotificationsComponent,
+    NotificationComponent
   ],
   exports: [
     SideMenuComponent,
     ButtonComponent,
     FormInputComponent,
     CheckboxComponent,
+    NotificationsComponent,
+    NotificationComponent
   ]
 })
 export class SharedModule { }

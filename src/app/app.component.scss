@@ -9,3 +9,11 @@
   padding: 44px 88px;
   box-sizing: border-box;
 }
+
+.notifications {
+  width: $side-menu-width;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-notifications;
+}

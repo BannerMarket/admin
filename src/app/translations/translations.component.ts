@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Dictionaries, TranslationService} from './services/translation.service';
 import {take} from 'rxjs/operators';
 import {Utils} from '../core/utils/utils';
-import {FunctionalUtils} from '../core/utils/functional-utils';
+import {NotificationsService} from '../shared/components/reusable/notifications/notifications.service';
+import {AppNotification, AppNotificationType} from '../shared/components/reusable/notifications/models/notification.model';
 
 @Component({
   selector: 'app-translations',
@@ -14,7 +15,7 @@ export class TranslationsComponent implements OnInit {
   public translations: Dictionaries;
   public keysToDisplay: Array<string> = [];
 
-  constructor(private translationService: TranslationService) { }
+  constructor(private translationService: TranslationService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.translationService
@@ -29,6 +30,14 @@ export class TranslationsComponent implements OnInit {
   public onSearch($event: Event) {
     const query: string = $event.target['value'];
     this.keysToDisplay = this.search(this.translations, query);
+  }
+
+  public onSave(): void {
+    this.notificationsService.pushNotification(new AppNotification(AppNotificationType.success, 'Translation successfully updated'));
+  }
+
+  public onDelete(): void {
+    this.notificationsService.pushNotification(new AppNotification(AppNotificationType.error, 'Could not update translation'));
   }
 
   private search(dictionaries: Dictionaries, query: string): Array<string> {

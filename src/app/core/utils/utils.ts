@@ -4,4 +4,7 @@ export class Utils {
     return Array.from(new Set(arr));
   }
 
+  static safeStr(str: any): string {
+    return typeof str === 'string' ? str : '';
+  }
 }

@@ -25,7 +25,7 @@
               (click)="onSave()">
         {{saving ? 'Wait...' : saveButtonLabel}}
       </button>
-      <button *ngIf="displayDelete"
+      <button *ngIf="!addingNew"
               class="tr__button tr__button--delete flex--center flex--fill cursor--pointer"
               [disabled]="deleting"
               (click)="onDelete()">

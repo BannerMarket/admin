@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'translations',
     loadChildren: './translations/translations.module#TranslationsModule',
   },
+  {
+    path: 'banners',
+    loadChildren: './banners/banners.module#BannersModule',
+  },
 ];
 
 @NgModule({

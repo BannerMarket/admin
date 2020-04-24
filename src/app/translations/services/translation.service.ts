@@ -3,6 +3,7 @@ import {Observable, zip} from 'rxjs';
 import {DataService} from '../../core/services/data.service';
 import {Urls} from '../../../assets/configs/urls';
 import {map, shareReplay} from 'rxjs/operators';
+import {FullTranslation} from '../components/translation-row/translation-row.component';
 
 export interface Dictionaries {
   en: object;
@@ -30,5 +31,13 @@ export class TranslationService {
     }
 
     return this.dictionaries;
+  }
+
+  public save(fullTranslation: FullTranslation): Observable<any> {
+    return this.dataService.put(`${Urls.TRANSLATION}/${fullTranslation.key}`, fullTranslation);
+  }
+
+  public delete(fullTranslation: FullTranslation): Observable<any> {
+    return this.dataService.delete(`${Urls.TRANSLATION}/${fullTranslation.key}`);
   }
 }

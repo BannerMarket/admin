@@ -21,13 +21,15 @@
   <div class="col-sm-2">
     <div class="flex--align-center">
       <button class="tr__button tr__button--save flex--center flex--fill cursor--pointer"
+              [disabled]="saving"
               (click)="onSave()">
-        {{saveButtonLabel}}
+        {{saving ? 'Wait...' : saveButtonLabel}}
       </button>
       <button *ngIf="displayDelete"
               class="tr__button tr__button--delete flex--center flex--fill cursor--pointer"
+              [disabled]="deleting"
               (click)="onDelete()">
-        Delete
+        {{deleting ? 'Wait...' : 'Delete'}}
       </button>
     </div>
   </div>

@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: './translations/translations.module#TranslationsModule',
   },
   {
+    path: 'categories',
+    loadChildren: './categories/categories.module#CategoriesModule',
+  },
+  {
     path: 'banners',
     loadChildren: './banners/banners.module#BannersModule',
   },

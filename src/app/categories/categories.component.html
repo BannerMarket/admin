@@ -1,0 +1,23 @@
+<div>
+  <h1 class="page-title">Categories</h1>
+
+  <div class="flex--align-center">
+    <button class="button-rounded button-rounded--primary button-rounded--with-margins"
+            (click)="openModal(false)">
+      Add category
+    </button>
+    <button class="button-rounded button-rounded--primary button-rounded--with-margins"
+            (click)="openModal(true)">
+      Add group
+    </button>
+  </div>
+
+  <div class="search">
+    <app-form-input label="search"
+                    placeholder="Enter category name, key or id"></app-form-input>
+  </div>
+
+  <div style="height: 1500px"></div>
+</div>
+
+<app-add-category-modal #addCategoryModal></app-add-category-modal>

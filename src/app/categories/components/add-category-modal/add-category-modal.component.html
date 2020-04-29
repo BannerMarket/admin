@@ -2,5 +2,27 @@
            [title]="title"></app-modal>
 
 <ng-template #categoryModal>
-  <div style="width: 700px"></div>
+  <form *ngIf="formGroup"
+        class="form"
+        [formGroup]="formGroup"
+        (ngSubmit)="addNewCategory()">
+    <div class="form__input">
+      <app-input [formControlName]="'name'" [placeholder]="'Name (translation key)'"></app-input>
+    </div>
+    <div class="form__input">
+      <app-input [formControlName]="'sortOrder'" [placeholder]="'Sort order'"></app-input>
+    </div>
+    <div *ngIf="!isGroup" class="form__input">
+      <app-input [formControlName]="'parentId'"
+                 [placeholder]="'Group name'"
+                 [type]="'select'"
+                 [options]="groupOptions"></app-input>
+    </div>
+    <div class="form__input">
+      <button class="button-rounded button-rounded--primary button-rounded--form full-width"
+              [ngClass]="{'button-rounded--greyscale': formGroup.invalid}">
+        Save
+      </button>
+    </div>
+  </form>
 </ng-template>

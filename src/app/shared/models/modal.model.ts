@@ -1,6 +1,6 @@
 export interface Modal {
 
-  close: () => any;
+  close: ($event: Event) => any;
 
   open: (data?: any) => any;
 

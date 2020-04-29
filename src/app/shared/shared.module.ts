@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import { NotificationsComponent } from './components/reusable/notifications/notifications.component';
 import { NotificationComponent } from './components/reusable/notifications/notification/notification.component';
 import { ModalComponent } from './components/reusable/modal/modal.component';
+import { InputComponent } from './components/reusable/input/input.component';
 
 @NgModule({
   imports: [
@@ -24,15 +25,17 @@ import { ModalComponent } from './components/reusable/modal/modal.component';
     NotificationsComponent,
     NotificationComponent,
     ModalComponent,
+    InputComponent,
   ],
-  exports: [
-    SideMenuComponent,
-    ButtonComponent,
-    FormInputComponent,
-    CheckboxComponent,
-    NotificationsComponent,
-    NotificationComponent,
-    ModalComponent,
-  ]
+    exports: [
+        SideMenuComponent,
+        ButtonComponent,
+        FormInputComponent,
+        CheckboxComponent,
+        NotificationsComponent,
+        NotificationComponent,
+        ModalComponent,
+        InputComponent,
+    ]
 })
 export class SharedModule { }

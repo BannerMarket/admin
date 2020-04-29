@@ -5,4 +5,6 @@ export class Urls {
   public static readonly DICTIONARY = 'dictionary/by-language';
   public static readonly TRANSLATION  = 'dictionary/by-key';
 
+  public static readonly CATEGORIES  = 'categories';
+
 }

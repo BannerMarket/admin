@@ -96,4 +96,13 @@
   &--with-margins {
     margin: 0 16px 16px 0;
   }
+
+  &--form {
+    height: height(medium-input);
+    font-size: 16px;
+  }
+
+  &--greyscale {
+    filter: grayscale(1);
+  }
 }

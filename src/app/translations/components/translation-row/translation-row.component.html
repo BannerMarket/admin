@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!header" class="row">
   <div class="col-sm-2">
     <input class="tr__input tr__input--key"
            type="text"
@@ -25,12 +25,35 @@
               (click)="onSave()">
         {{saving ? 'Wait...' : saveButtonLabel}}
       </button>
-      <button *ngIf="!addingNew"
-              class="tr__button tr__button--delete flex--center flex--fill cursor--pointer"
+      <button class="tr__button tr__button--delete flex--center flex--fill cursor--pointer"
               [disabled]="deleting"
               (click)="onDelete()">
         {{deleting ? 'Wait...' : 'Delete'}}
       </button>
     </div>
+  </div>
+</div>
+
+<div *ngIf="header" class="row">
+  <div class="col-sm-2">
+    <input class="tr__input tr__input--header tr__input--key"
+           type="text"
+           disabled
+           [value]="'Key'">
+  </div>
+  <div class="col-sm-4">
+    <input class="tr__input tr__input--header"
+           type="text"
+           disabled
+           [value]="'English translation'">
+  </div>
+  <div class="col-sm-4">
+    <input class="tr__input tr__input--header"
+           type="text"
+           disabled
+           [value]="'Georgian translation'">
+  </div>
+  <div class="col-sm-2">
+    <div class="tr__input tr__input--header"></div>
   </div>
 </div>

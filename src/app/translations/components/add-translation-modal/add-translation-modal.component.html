@@ -1,0 +1,25 @@
+<app-modal #modal [contentRef]="categoryModal"
+           [title]="'Add new translation'"></app-modal>
+
+<ng-template #categoryModal>
+  <form *ngIf="formGroup"
+        class="form"
+        [formGroup]="formGroup"
+        (ngSubmit)="addNewTranslation()">
+    <div class="form__input">
+      <app-input [formControlName]="'key'" [placeholder]="'Translation key'"></app-input>
+    </div>
+    <div class="form__input">
+      <app-input [formControlName]="'en'" [placeholder]="'English translation'"></app-input>
+    </div>
+    <div class="form__input">
+      <app-input [formControlName]="'ge'" [placeholder]="'Georgian translation'"></app-input>
+    </div>
+    <div class="form__input">
+      <button class="button-rounded button-rounded--primary button-rounded--form full-width"
+              [ngClass]="{'button-rounded--greyscale': formGroup.invalid}">
+        Save
+      </button>
+    </div>
+  </form>
+</ng-template>

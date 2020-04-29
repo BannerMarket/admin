@@ -101,5 +101,7 @@ export class FormInputComponent extends CustomControlBaseComponent<string> imple
     $event.stopPropagation();
     this.writeValue('');
     this.clear.emit($event);
+    // @ts-ignore
+    this.input.emit({target: {value: ''}});
   }
 }

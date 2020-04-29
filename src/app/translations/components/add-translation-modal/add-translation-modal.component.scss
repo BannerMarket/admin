@@ -1,0 +1,9 @@
+@import "../../translations.component";
+
+.form {
+  width: $modal-width;
+
+  &__input {
+    margin-top: 16px;
+  }
+}

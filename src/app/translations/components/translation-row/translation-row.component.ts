@@ -23,7 +23,7 @@ export class TranslationRowComponent implements OnInit {
   @Input() ge = '';
 
   @Input() saveButtonLabel = 'Save';
-  @Input() addingNew = false;
+  @Input() header = false;
 
   public saving = false;
   public deleting = false;
@@ -44,12 +44,6 @@ export class TranslationRowComponent implements OnInit {
       .subscribe(() => {
         this.saving = false;
         this.notifySuccess('Translation updated successfully');
-
-        if (this.addingNew) {
-          this.key = '';
-          this.en = '';
-          this.ge = '';
-        }
       }, error => {
         this.saving = false;
         console.error(error);

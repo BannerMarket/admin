@@ -1,7 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Dictionaries, TranslationService} from './services/translation.service';
 import {take} from 'rxjs/operators';
 import {Utils} from '../core/utils/utils';
+import {AddTranslationModalComponent} from './components/add-translation-modal/add-translation-modal.component';
+import {FullTranslation} from './components/translation-row/translation-row.component';
+import {NotificationsService} from '../shared/components/reusable/notifications/notifications.service';
+import {AppNotification, AppNotificationType} from '../shared/components/reusable/notifications/models/notification.model';
 
 @Component({
   selector: 'app-translations',
@@ -10,10 +14,13 @@ import {Utils} from '../core/utils/utils';
 })
 export class TranslationsComponent implements OnInit {
 
+  @ViewChild(AddTranslationModalComponent) modal?: AddTranslationModalComponent;
+
   public translations: Dictionaries;
   public keysToDisplay: Array<string> = [];
 
-  constructor(private translationService: TranslationService) { }
+  constructor(private translationService: TranslationService,
+              private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.translationService
@@ -39,5 +46,28 @@ export class TranslationsComponent implements OnInit {
     const geWordsWithQuery = keys.filter(key => dictionaries.ge[key] && dictionaries.ge[key].includes(query));
 
     return Utils.unique([...keyWithQuery, ...enWordsWithQuery, ...geWordsWithQuery]);
+  }
+
+  public openModal(): void {
+    if (this.modal) {
+      this.modal.open();
+    }
+  }
+
+  public addNew(translation: FullTranslation): void {
+    this.translationService.save(translation)
+      .pipe(take(1))
+      .subscribe(() => this.showSuccess(), error => this.showError(error));
+  }
+
+  private showSuccess(): void {
+    this.notificationsService.pushNotification(
+      new AppNotification(AppNotificationType.success, 'Translated successfully', {offerRefresh: true})
+    );
+  }
+
+  private showError(error: any): void {
+    console.error(error);
+    this.notificationsService.pushNotification(new AppNotification(AppNotificationType.error, 'Could not translate'));
   }
 }

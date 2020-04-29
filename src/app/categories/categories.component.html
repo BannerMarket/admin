@@ -14,10 +14,15 @@
 
   <div class="search">
     <app-form-input label="search"
-                    placeholder="Enter category name, key or id"></app-form-input>
+                    placeholder="Enter category name, key or id"
+                    (input)="search($event.target['value'])"></app-form-input>
   </div>
 
-  <div style="height: 1500px"></div>
+  <cdk-virtual-scroll-viewport class="list" itemSize="34">
+    <div *cdkVirtualFor="let category of filtered" class="list__item" [ngClass]="{'list__item--highlighted': isGroup(category)}">
+      <app-category-row [category]="category"></app-category-row>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>
 
 <app-add-category-modal #addCategoryModal

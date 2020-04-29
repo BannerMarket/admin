@@ -7,6 +7,7 @@ import {take} from 'rxjs/operators';
 import {AppNotification, AppNotificationType} from '../shared/components/reusable/notifications/models/notification.model';
 import {SelectionOption} from '../shared/components/reusable/modal/selection-option.model';
 import {TranslationService} from '../translations/services/translation.service';
+import {FunctionalUtils} from '../core/utils/functional-utils';
 
 @Component({
   selector: 'app-categories',
@@ -17,8 +18,9 @@ export class CategoriesComponent implements OnInit {
 
   @ViewChild(AddCategoryModalComponent) modal?: AddCategoryModalComponent;
 
-  public categoryGroups: Array<Category> = [];
   public groupOptions: Array<SelectionOption> = [];
+  public categories: Array<Category> = [];
+  public filtered: Array<Category> = [];
 
   constructor(private categoryDataService: CategoryDataService,
               private notificationsService: NotificationsService,
@@ -28,8 +30,13 @@ export class CategoriesComponent implements OnInit {
     this.categoryDataService.getCategoryGroups()
       .pipe(take(1))
       .subscribe(categoryGroups => {
-        this.categoryGroups = categoryGroups;
         this.initGroupOptions(categoryGroups);
+      });
+    this.categoryDataService.getAllCategories()
+      .pipe(take(1))
+      .subscribe(categories => {
+        this.categories = this.sortCategories(categories);
+        this.filtered = this.categories;
       });
   }
 
@@ -79,12 +86,44 @@ export class CategoriesComponent implements OnInit {
   }
 
   private getSelectionOptions(categoryGroups: Array<Category>, dictionary: object): Array<SelectionOption> {
-    console.log(categoryGroups);
-
     return categoryGroups
       .map(categoryGroup => ({
         value: categoryGroup._id,
         name: dictionary[categoryGroup.name] ? dictionary[categoryGroup.name] : categoryGroup.name,
       }));
+  }
+
+  private sortCategories(categories: Array<Category>): Array<Category> {
+    const sortBySortOrder = (a: Category, b: Category) => a.sortOrder - b.sortOrder;
+    const withSubcategories = (group: Category) => {
+      const subcategories = categories
+        .filter(_category => _category.parentId === group._id)
+        .sort(sortBySortOrder);
+      return [group, ...subcategories];
+    };
+
+    return categories
+      .filter(this.isGroup)
+      .sort(sortBySortOrder)
+      .map(withSubcategories)
+      .reduce(FunctionalUtils.flatten);
+  }
+
+  public isGroup(category: Category): boolean {
+    return category.parentId === 'null';
+  }
+
+  public search(query: string): void {
+    this.translationService.getDictionaries()
+      .pipe(take(1))
+      .subscribe(dictionary => {
+        this.filtered = this.categories
+          .filter(category => {
+            const matchesId = category._id.includes(query);
+            const matchesKey = category.name.includes(query);
+            const matchesName = dictionary.en[category.name] && dictionary.en[category.name].includes(query);
+            return matchesId || matchesKey || matchesName;
+          });
+      });
   }
 }

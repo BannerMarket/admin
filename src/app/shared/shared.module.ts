@@ -10,6 +10,7 @@ import { NotificationsComponent } from './components/reusable/notifications/noti
 import { NotificationComponent } from './components/reusable/notifications/notification/notification.component';
 import { ModalComponent } from './components/reusable/modal/modal.component';
 import { InputComponent } from './components/reusable/input/input.component';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
   imports: [
@@ -26,16 +27,18 @@ import { InputComponent } from './components/reusable/input/input.component';
     NotificationComponent,
     ModalComponent,
     InputComponent,
+    TranslatePipe,
   ],
-    exports: [
-        SideMenuComponent,
-        ButtonComponent,
-        FormInputComponent,
-        CheckboxComponent,
-        NotificationsComponent,
-        NotificationComponent,
-        ModalComponent,
-        InputComponent,
-    ]
+  exports: [
+    SideMenuComponent,
+    ButtonComponent,
+    FormInputComponent,
+    CheckboxComponent,
+    NotificationsComponent,
+    NotificationComponent,
+    ModalComponent,
+    InputComponent,
+    TranslatePipe,
+  ]
 })
 export class SharedModule { }

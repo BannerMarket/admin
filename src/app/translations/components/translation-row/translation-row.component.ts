@@ -33,6 +33,10 @@ export class TranslationRowComponent implements OnInit {
   ngOnInit() { }
 
   public onSave(): void {
+    if (this.saving || this.deleting) {
+      return;
+    }
+
     this.saving = true;
     this.translationService
       .save(this.fullTranslation)
@@ -54,6 +58,10 @@ export class TranslationRowComponent implements OnInit {
   }
 
   public onDelete(): void {
+    if (this.saving || this.deleting) {
+      return;
+    }
+
     this.deleting = true;
     this.translationService
       .delete(this.fullTranslation)

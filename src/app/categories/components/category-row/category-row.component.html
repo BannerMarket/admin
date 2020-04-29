@@ -1,0 +1,50 @@
+<div *ngIf="!header" class="row">
+  <div class="col-sm-2">
+    <input class="c__input" disabled type="text" [(ngModel)]="category._id">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input" disabled type="text" [value]="category.name | translate | async">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input" type="text" [(ngModel)]="category.name">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input" type="text" [(ngModel)]="category.sortOrder">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input" type="text" [(ngModel)]="category.parentId">
+  </div>
+  <div class="col-sm-2">
+    <div class="flex--align-center">
+      <button class="c__button c__button--save flex--center flex--fill cursor--pointer"
+              [disabled]="saving"
+              (click)="onSave()">
+        {{saving ? 'Wait...' : 'Save'}}
+      </button>
+      <button class="c__button c__button--delete flex--center flex--fill cursor--pointer"
+              [disabled]="deleting"
+              (click)="onDelete()">
+        {{deleting ? 'Wait...' : 'Delete'}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="header" class="row">
+  <div class="col-sm-2">
+    <input class="c__input c__input--bold" disabled type="text" [value]="'Id'">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input c__input--bold" disabled type="text" [value]="'Name'">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input c__input--bold" disabled type="text" [value]="'Translation key'">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input c__input--bold" disabled type="text" [value]="'Sort order'">
+  </div>
+  <div class="col-sm-2">
+    <input class="c__input c__input--bold" disabled type="text" [value]="'Group id'">
+  </div>
+</div>
+

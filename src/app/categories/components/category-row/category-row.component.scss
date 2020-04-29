@@ -1,0 +1,39 @@
+@import "../../categories.component";
+
+.row, .col-sm-2, .col-sm-4 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.c {
+
+  &__input {
+    height: 34px;
+    width: 100%;
+    border-right: solid 1px color(input-border);
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    &--key {
+      border-left: solid 1px color(input-border);
+    }
+
+    &--bold {
+      font-weight: 800;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    height: 34px;
+    color: white;
+
+    &--save {
+      background-color: color(text-main);
+    }
+
+    &--delete {
+      background: color(brand-main);
+    }
+  }
+}

@@ -5,12 +5,16 @@
 
   &__item {
     border-top: solid 1px color(input-border);
+    border-left: solid 1px color(input-border);
+    border-right: solid 1px color(input-border);
 
     &:last-child {
       border-bottom: solid 1px color(input-border);
     }
-    &:nth-child(2n) {
+
+    &--highlighted {
       background-color: color(grey-shade);
     }
   }
 }
+

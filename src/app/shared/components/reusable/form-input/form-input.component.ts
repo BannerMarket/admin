@@ -29,7 +29,7 @@ const arrayIncludes = <T>(arr: T[]) => (value: T): boolean => arr.indexOf(value)
   ]
 })
 export class FormInputComponent extends CustomControlBaseComponent<string> implements OnInit, OnDestroy {
-  private static SUPPORTED_TYPES = ['text', 'email', 'password', 'number', 'select'];
+  private static SUPPORTED_TYPES = ['text', 'email', 'password', 'number'];
   private static isSupportedType = arrayIncludes(FormInputComponent.SUPPORTED_TYPES);
 
   @Input() placeholder = '';

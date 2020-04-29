@@ -8,6 +8,9 @@ import {CheckboxComponent} from './components/reusable/checkbox/checkbox.compone
 import {FormsModule} from '@angular/forms';
 import { NotificationsComponent } from './components/reusable/notifications/notifications.component';
 import { NotificationComponent } from './components/reusable/notifications/notification/notification.component';
+import { ModalComponent } from './components/reusable/modal/modal.component';
+import { InputComponent } from './components/reusable/input/input.component';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +24,10 @@ import { NotificationComponent } from './components/reusable/notifications/notif
     FormInputComponent,
     CheckboxComponent,
     NotificationsComponent,
-    NotificationComponent
+    NotificationComponent,
+    ModalComponent,
+    InputComponent,
+    TranslatePipe,
   ],
   exports: [
     SideMenuComponent,
@@ -29,7 +35,10 @@ import { NotificationComponent } from './components/reusable/notifications/notif
     FormInputComponent,
     CheckboxComponent,
     NotificationsComponent,
-    NotificationComponent
+    NotificationComponent,
+    ModalComponent,
+    InputComponent,
+    TranslatePipe,
   ]
 })
 export class SharedModule { }

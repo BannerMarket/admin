@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-banners-list',
+  templateUrl: './banners-list.component.html',
+  styleUrls: ['./banners-list.component.scss']
+})
+export class BannersListComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

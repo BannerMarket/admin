@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-2">
+    <div class="widget full-width flex--dir-col flex--align-center cursor--pointer"
+         [routerLink]="['/banners/list']"
+         [queryParams]="{type: 'pending'}">
+      <h2 class="w__count w__count--yellow">12</h2>
+      <p class="w__desc">Orders to confirm</p>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="widget full-width flex--dir-col flex--align-center cursor--pointer"
+         [routerLink]="['/banners/list']"
+         [queryParams]="{promo: true}">
+      <h2 class="w__count w__count--green">38</h2>
+      <p class="w__desc">Banners promoted</p>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="widget full-width flex--dir-col flex--align-center cursor--pointer"
+         [routerLink]="['/banners/list']">
+      <h2 class="w__count">143</h2>
+      <p class="w__desc">Total active banners</p>
+    </div>
+  </div>
+</div>

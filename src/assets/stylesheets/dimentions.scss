@@ -1,11 +1,8 @@
-$padding: (
-
-);
-
 $height: (
   header: 80px,
   button: 42px,
   input: 70px,
+  medium-input: 56px,
 );
 
 $border-radius: 12px;
@@ -13,6 +10,8 @@ $border-radius-medium: 8px;
 $border-radius-small: 4px;
 
 $side-menu-width: 250px;
+
+$modal-width: 700px;
 
 $z-index-header: 5;
 $z-index-notifications: 5;

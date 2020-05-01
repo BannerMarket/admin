@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {DataService} from './data.service';
 import {Urls} from '../../../assets/configs/urls';
 import {map, take} from 'rxjs/operators';
-import {LocalStorage} from "../global/local-storage";
+import {LocalStorage} from '../global/local-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +69,12 @@ export class LanguageService {
           this.dictionary.next(dictionary);
         }
       }, error => console.error(error));
+  }
+
+  public translateArray(keys: Array<string>): Observable<Array<string>> {
+    return this.dictionary
+      .pipe(map(dictionary => {
+        return keys.map(key => dictionary[key] ? dictionary[key] : key);
+      }));
   }
 }

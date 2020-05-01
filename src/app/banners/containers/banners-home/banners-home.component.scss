@@ -1,19 +1,2 @@
 @import "../../../../styles";
 
-.w {
-
-  &__count {
-    &--yellow {
-      color: color(yellow);
-    }
-
-    &--green {
-      color: color(green);
-    }
-  }
-
-  &__desc {
-    text-align: center;
-    margin-top: 8px;
-  }
-}

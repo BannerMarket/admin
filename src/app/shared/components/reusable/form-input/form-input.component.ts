@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  Output, TemplateRef, ViewChild
+  Output, ViewChild
 } from '@angular/core';
 import {ControlContainer, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {CustomControlBaseComponent} from '../../../models/custom-control-base.component';

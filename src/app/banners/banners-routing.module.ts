@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {BannersComponent} from './banners.component';
 import {BannersHomeComponent} from './containers/banners-home/banners-home.component';
-import {BannersListComponent} from './containers/banners-list/banners-list.component';
+import {BannersEditComponent} from './containers/banners-edit/banners-edit.component';
 
 const routes: Routes = [
   {
@@ -15,8 +15,8 @@ const routes: Routes = [
         component: BannersHomeComponent
       },
       {
-        path: 'list',
-        component: BannersListComponent
+        path: 'new',
+        component: BannersEditComponent
       }
     ]
   },

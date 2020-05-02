@@ -92,7 +92,9 @@
     <div class="input">
       <app-file-uploader [uploadUrl]="uploadUrl"
                          [filesToAccept]="filesToAccept"
-                         (files)="onAddImages($event)"></app-file-uploader>
+                         (files)="onAddImages($event)"
+                         (uploading)="isUploadingImages = true"
+                         (uploaded)="isUploadingImages = false"></app-file-uploader>
     </div>
   </div>
 
@@ -102,6 +104,7 @@
   <!-- ------------------------------------------------------------------------------- -->
 
   <div class="col-sm-6">
-    <button class="button-rounded button-rounded--primary button-rounded--form full-width">Save</button>
+    <button class="button-rounded button-rounded--primary button-rounded--form full-width"
+            [ngClass]="{'button-rounded--greyscale': isUploadingImages || bannerForm.invalid}">Save</button>
   </div>
 </form>

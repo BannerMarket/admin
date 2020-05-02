@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {DataService} from '../../../../core/services/data.service';
-import {take} from 'rxjs/operators';
+import {filter, pairwise, skip, take} from 'rxjs/operators';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 export enum FileUploadStatus {
   NONE,
@@ -25,20 +26,31 @@ export interface UploadResult {
   templateUrl: './file-uploader.component.html',
   styleUrls: ['./file-uploader.component.scss']
 })
-export class FileUploaderComponent implements OnInit {
+export class FileUploaderComponent implements OnInit, OnDestroy {
 
   @Input() filesToAccept = '';
   @Input() uploadUrl: string;
 
   @Output() files: EventEmitter<Array<string>> = new EventEmitter<Array<string>>();
+  @Output() uploading: EventEmitter<null> = new EventEmitter<null>();
+  @Output() uploaded: EventEmitter<null> = new EventEmitter<null>();
 
   public readonly FileUploadStatus = FileUploadStatus;
 
   public filesUploads: Array<FileUpload> = [];
 
+  private uploadTaskCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private subscriptions: Array<Subscription> = [];
+
   constructor(private dataService: DataService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.listenToUpload();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 
   public uploadFile($event: Event): void {
     const files: FileList = $event.target['files'];
@@ -59,6 +71,8 @@ export class FileUploaderComponent implements OnInit {
       return;
     }
 
+    this.startUploading();
+
     const formData = new FormData();
     Array.from(files).forEach(file => {
       formData.append(file.name, file);
@@ -71,7 +85,8 @@ export class FileUploaderComponent implements OnInit {
         error => {
                 console.error(error);
                 this.fileUploadError(files);
-              });
+              },
+        () => this.endUploading());
   }
 
   private fileUploadSuccess(result: Array<UploadResult>): void {
@@ -96,5 +111,30 @@ export class FileUploaderComponent implements OnInit {
 
       fileUpload.status = FileUploadStatus.ERROR;
     });
+  }
+
+  private listenToUpload(): void {
+    const s1 = this.uploadTaskCount$
+      .pipe(
+        skip(1),
+        filter(taskCount => taskCount === 0)
+      ).subscribe(() => this.uploaded.emit());
+
+    const s2 = this.uploadTaskCount$
+      .pipe(
+        pairwise(),
+        filter(([oldUploadCount, uploadCountNow]) => oldUploadCount === 0 && uploadCountNow > 0)
+      ).subscribe(() => this.uploading.emit());
+
+    this.subscriptions.push(s1);
+    this.subscriptions.push(s2);
+  }
+
+  private startUploading(): void {
+    this.uploadTaskCount$.next(this.uploadTaskCount$.getValue() + 1);
+  }
+
+  private endUploading(): void {
+    this.uploadTaskCount$.next(this.uploadTaskCount$.getValue() - 1);
   }
 }

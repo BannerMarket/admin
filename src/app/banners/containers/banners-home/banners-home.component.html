@@ -7,6 +7,13 @@
 
   <div class="search">
     <app-form-input label="search"
-                    placeholder="Enter banner id"></app-form-input>
+                    placeholder="Enter banner id"
+                    (input)="filter($event)"></app-form-input>
   </div>
+
+  <cdk-virtual-scroll-viewport class="list" itemSize="34">
+    <div *cdkVirtualFor="let banner of filtered" class="list__item">
+      <app-banner-row [banner]="banner"></app-banner-row>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>

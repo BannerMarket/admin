@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="banner._id"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="banner.titleEn"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="banner.shortDescriptionEn"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="banner.categories.length + ' categories'"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="banner.images.length + ' images'"/>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="flex--align-center">
+      <button class="listing__button listing__button--save flex--center flex--fill cursor--pointer">
+        Delete
+      </button>
+      <button class="listing__button listing__button--delete flex--center flex--fill cursor--pointer">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

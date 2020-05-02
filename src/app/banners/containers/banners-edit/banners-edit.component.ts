@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Patterns} from '../../../core/utils/patterns';
 import {Category} from '../../../categories/model/category.model';
+import {Urls} from '../../../../assets/configs/urls';
 
 @Component({
   selector: 'app-banners-edit',
@@ -9,6 +10,9 @@ import {Category} from '../../../categories/model/category.model';
   styleUrls: ['./banners-edit.component.scss']
 })
 export class BannersEditComponent implements OnInit {
+
+  public readonly uploadUrl = Urls.BANNER_IMAGES;
+  public readonly filesToAccept = 'image/*';
 
   public bannerForm: FormGroup;
 
@@ -25,7 +29,12 @@ export class BannersEditComponent implements OnInit {
       shortDescriptionEn: ['', [Validators.required]],
       fullDescriptionGe: ['', [Validators.required]],
       fullDescriptionEn: ['', [Validators.required]],
+      images: [[], [Validators.required]]
     });
+  }
+
+  public get imageUrls(): Array<string> {
+    return this.bannerForm.controls['images'].value;
   }
 
   public saveBanner(): void {
@@ -35,5 +44,9 @@ export class BannersEditComponent implements OnInit {
   public updateCategories(categories: Array<Category>): void {
     const categoryIds = categories.map(category => category._id);
     this.bannerForm.controls['categories'].patchValue(categoryIds);
+  }
+
+  public onAddImages(imageUrls: Array<string>): void {
+    this.bannerForm.controls['images'].patchValue([...this.imageUrls, ...imageUrls]);
   }
 }

@@ -1,0 +1,85 @@
+@import "../../../../../styles";
+
+@keyframes rotate {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
+.upload {
+  border: solid 1px color(input-border);
+  border-radius: $border-radius;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 100%;
+
+  &__button {
+    height: height(medium-input);
+    position: relative;
+
+    button, input {
+      height: height(medium-input);
+      width: 200px;
+    }
+
+    button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    input {
+      opacity: 0;
+    }
+  }
+
+  &__files {
+
+  }
+
+  &__file {
+    margin-bottom: 12px;
+
+    &--in-progress {
+      .upload__file__icon:after {
+        display: block;
+        border: solid 3px color(green);
+        border-bottom: solid 3px transparent;
+        border-radius: 16px;
+        animation: 0.6s rotate infinite;
+      }
+    }
+
+    &--uploaded {
+      .upload__file__icon:after {
+        display: block;
+        background-image: url("../../../../../assets/icons/checkmark-circle.svg");
+        background-size: cover;
+      }
+    }
+
+    &--error {
+      .upload__file__icon:after {
+        display: block;
+        background-image: url("../../../../../assets/icons/close-circle.svg");
+        background-size: cover;
+      }
+    }
+
+    &__icon {
+      &:after {
+        content: '';
+        display: none;
+        height: 16px;
+        width: 16px;
+        box-sizing: border-box;
+      }
+    }
+
+    &__name {
+      font-size: 12px;
+      margin-left: 8px;
+    }
+  }
+}

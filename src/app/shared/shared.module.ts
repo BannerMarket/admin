@@ -13,6 +13,8 @@ import { InputComponent } from './components/reusable/input/input.component';
 import { TranslatePipe } from './pipes/translate.pipe';
 import {CategorySelectionComponent} from './components/reusable/category-selection/category-selection.component';
 import { CategoryInputComponent } from './components/category-input/category-input.component';
+import { FileUploaderComponent } from './components/reusable/file-uploader/file-uploader.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import { CategoryInputComponent } from './components/category-input/category-inp
     TranslatePipe,
     CategorySelectionComponent,
     CategoryInputComponent,
+    FileUploaderComponent,
+    SafeUrlPipe,
   ],
   exports: [
     SideMenuComponent,
@@ -46,6 +50,8 @@ import { CategoryInputComponent } from './components/category-input/category-inp
     TranslatePipe,
     CategorySelectionComponent,
     CategoryInputComponent,
+    FileUploaderComponent,
+    SafeUrlPipe,
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,26 @@
+<div class="upload">
+
+  <div class="upload__files">
+    <div *ngFor="let fileUpload of filesUploads"
+         class="upload__file flex--align-center"
+         [ngClass]="{
+            'upload__file--in-progress': fileUpload.status === FileUploadStatus.UPLOADING,
+            'upload__file--uploaded': fileUpload.status === FileUploadStatus.UPLOADED,
+            'upload__file--error': fileUpload.status === FileUploadStatus.ERROR
+         }">
+      <div class="upload__file__icon"></div>
+      <p class="upload__file__name">
+        {{fileUpload.file.name}}
+      </p>
+    </div>
+  </div>
+
+
+  <div class="upload__button">
+    <input [accept]="filesToAccept" (change)="uploadFile($event)" type="file" multiple>
+    <button class="button-rounded button-rounded--primary">
+      Select files
+    </button>
+  </div>
+
+</div>

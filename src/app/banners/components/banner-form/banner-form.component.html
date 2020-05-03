@@ -1,0 +1,110 @@
+<form *ngIf="bannerForm" class="row" [formGroup]="bannerForm" (ngSubmit)="saveBanner()">
+  <div class="col-sm-12">
+    <div class="title no-margin-top">
+      <p>Location</p>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="input">
+      <app-input [placeholder]="'Latitude'" formControlName="lat"></app-input>
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="input">
+      <app-input [placeholder]="'Longitude'" formControlName="lng"></app-input>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------------------- -->
+
+  <div class="col-sm-12">
+    <div class="title">
+      <p>Categories</p>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-category-input (categories)="updateCategories($event)"></app-category-input>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------------------- -->
+
+  <div class="col-sm-12">
+    <div class="title">
+      <p>Descriptions</p>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="input">
+      <app-input [placeholder]="'Title in Georgian'" formControlName="titleGe"></app-input>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-input [placeholder]="'Title in English'" formControlName="titleEn"></app-input>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-input [placeholder]="'Short description in Georgian'" formControlName="shortDescriptionGe"></app-input>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-input [placeholder]="'Short description in English'" formControlName="shortDescriptionEn"></app-input>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <textarea class="description" placeholder="Full description in Georgian" formControlName="fullDescriptionGe"></textarea>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <textarea class="description" placeholder="Full description in English" formControlName="fullDescriptionEn"></textarea>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------------------------------------- -->
+
+  <div class="col-sm-12">
+    <div class="title">
+      <p>Images</p>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="input">
+      <img *ngFor="let image of imageUrls" [src]="image | safeUrl" alt="" style="height: 100px">
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-file-uploader [uploadUrl]="uploadUrl"
+                         [filesToAccept]="filesToAccept"
+                         (files)="onAddImages($event)"
+                         (uploading)="isUploadingImages = true"
+                         (uploaded)="isUploadingImages = false"></app-file-uploader>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+  </div>
+
+  <!-- ------------------------------------------------------------------------------- -->
+
+  <div class="col-sm-6">
+    <button class="button-rounded button-rounded--primary button-rounded--form full-width"
+            [ngClass]="{'button-rounded--greyscale': isUploadingImages || bannerForm.invalid}">Save</button>
+  </div>
+</form>

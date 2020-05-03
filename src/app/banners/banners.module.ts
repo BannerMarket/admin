@@ -8,6 +8,7 @@ import { BannersEditComponent } from './containers/banners-edit/banners-edit.com
 import {ReactiveFormsModule} from '@angular/forms';
 import { BannerRowComponent } from './components/banner-row/banner-row.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { BannerFormComponent } from './components/banner-form/banner-form.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     BannersComponent,
     BannersHomeComponent,
     BannersEditComponent,
-    BannerRowComponent
+    BannerRowComponent,
+    BannerFormComponent
   ]
 })
 export class BannersModule { }

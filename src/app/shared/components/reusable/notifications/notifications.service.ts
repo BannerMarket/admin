@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AppNotification} from './models/notification.model';
+import {AppNotification, AppNotificationConfig, AppNotificationType} from './models/notification.model';
 import {Subject, timer} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {NotificationStorage} from './models/notification-storage';
@@ -25,6 +25,10 @@ export class NotificationsService {
   public pushNotification(notification: AppNotification): void {
     this.notificationStorage.push(notification);
     this.prepareToRemove(notification);
+  }
+
+  public notify(type: AppNotificationType, message: string, config: AppNotificationConfig = {}): void {
+    this.pushNotification(new AppNotification(type, message, config));
   }
 
   private prepareToRemove(notification: AppNotification): void {

@@ -26,4 +26,8 @@ export class BannerDataService {
   public editBanner(id: string, banner: FullBanner): Observable<FullBanner> {
     return this.dataService.post(`${Urls.BANNER}/${id}`, banner);
   }
+
+  public deleteBanner(id: string) {
+    return this.dataService.delete(`${Urls.BANNER}/${id}`);
+  }
 }

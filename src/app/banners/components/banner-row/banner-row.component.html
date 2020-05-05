@@ -17,11 +17,14 @@
 
   <div class="col-sm-2">
     <div class="flex--align-center">
-      <button class="listing__button listing__button--save flex--center flex--fill cursor--pointer">
-        Delete
-      </button>
-      <button class="listing__button listing__button--delete flex--center flex--fill cursor--pointer">
+      <button class="listing__button listing__button--save flex--center flex--fill cursor--pointer"
+              [routerLink]="['/banners/edit', banner._id]">
         Edit
+      </button>
+      <button class="listing__button listing__button--delete flex--center flex--fill cursor--pointer"
+              [disabled]="deleting"
+              (click)="deleteBanner()">
+        {{deleting ? 'Wait...' : 'Delete'}}
       </button>
     </div>
   </div>

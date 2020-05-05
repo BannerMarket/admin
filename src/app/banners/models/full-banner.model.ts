@@ -1,4 +1,4 @@
-export interface Banner {
+export interface FullBanner {
   lat: number | string;
   lng: number | string;
   categories: Array<string>;
@@ -12,7 +12,7 @@ export interface Banner {
   _id?: string;
 }
 
-export const EmptyBanner: Banner = {
+export const EmptyBanner: FullBanner = {
   lat: '',
   lng: '',
   categories: [],

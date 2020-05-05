@@ -17,7 +17,11 @@ const routes: Routes = [
       {
         path: 'new',
         component: BannersEditComponent
-      }
+      },
+      {
+        path: 'edit/:id',
+        component: BannersEditComponent
+      },
     ]
   },
 ];

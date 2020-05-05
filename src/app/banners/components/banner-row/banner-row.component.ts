@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Banner} from '../../models/banner.model';
+import {Banner} from '../../models/full-banner.model';
 
 @Component({
   selector: 'app-banner-row',

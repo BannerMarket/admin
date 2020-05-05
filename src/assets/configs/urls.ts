@@ -9,5 +9,6 @@ export class Urls {
   public static readonly CATEGORY = 'categories/category';
 
   public static readonly BANNER_IMAGES = 'banners/upload/images';
-  public static readonly BANNERS = 'banners';
+  public static readonly BANNERS = 'banners/full';
+  public static readonly BANNER = 'banners/full/banner';
 }

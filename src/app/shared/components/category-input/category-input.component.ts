@@ -1,10 +1,11 @@
-import {Component, ElementRef, EventEmitter, forwardRef, HostListener, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {TreeNode} from '../../../core/models/tree.model';
 import {Category} from '../../../categories/model/category.model';
 import {CategoryDataService} from '../../../categories/services/category-data.service';
 import {LanguageService} from '../../../core/services/language.service';
 import {take} from 'rxjs/operators';
+import {Utils} from '../../../core/utils/utils';
 
 @Component({
   selector: 'app-category-input',
@@ -19,6 +20,8 @@ import {take} from 'rxjs/operators';
   ]
 })
 export class CategoryInputComponent implements OnInit {
+
+  @Input() selected: Array<string> = [];
 
   @Output() categories: EventEmitter<Array<Category>> = new EventEmitter();
   public focused = false;
@@ -43,10 +46,11 @@ export class CategoryInputComponent implements OnInit {
       .pipe(take(1))
       .subscribe(groups => {
         this.groups = groups;
+        this.selectInitial(groups);
       });
   }
 
-  onSelection(categories: Array<Category>) {
+  public onSelection(categories: Array<Category>) {
     this._categories = categories;
     this.categories.emit(categories);
 
@@ -58,5 +62,17 @@ export class CategoryInputComponent implements OnInit {
       .subscribe(translations => {
         this._result = translations.length > 0 ? translations.reduce((res, translation) => `${res}, ${translation}`) : '';
       });
+  }
+
+  private selectInitial(groups: Array<TreeNode<Category>>): void {
+    console.log(groups, this.selected);
+
+    const selectedCategories = groups
+      .map(group => group.children)
+      .reduce(Utils.concatReducer)
+      .map(node => node.data)
+      .filter(category => this.selected.includes(category._id));
+
+    this.onSelection(selectedCategories);
   }
 }

@@ -72,8 +72,8 @@ export class InputComponent extends CustomControlBaseComponent<string> implement
   }
 
   writeValue(value: any) {
-    if (typeof value === 'string') {
-      this.ngModel = value;
+    if (typeof value === 'string' || typeof value === 'number') {
+      this.ngModel = '' + value;
     } else {
       this.ngModel = '';
     }

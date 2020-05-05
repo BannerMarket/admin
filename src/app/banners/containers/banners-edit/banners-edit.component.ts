@@ -3,7 +3,8 @@ import {BannerDataService} from '../../services/banner-data.service';
 import {take} from 'rxjs/operators';
 import {NotificationsService} from '../../../shared/components/reusable/notifications/notifications.service';
 import {AppNotification, AppNotificationType} from '../../../shared/components/reusable/notifications/models/notification.model';
-import {Banner, EmptyBanner} from '../../models/banner.model';
+import {FullBanner, EmptyBanner} from '../../models/full-banner.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-banners-edit',
@@ -13,16 +14,28 @@ import {Banner, EmptyBanner} from '../../models/banner.model';
 export class BannersEditComponent implements OnInit {
 
   public isLoading = false;
-  public initialBanner: Banner;
+  public initialBanner: FullBanner;
 
   constructor(private bannerDataService: BannerDataService,
+              private activatedRoute: ActivatedRoute,
               private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    this.initialBanner = EmptyBanner;
+    const id = this.activatedRoute.snapshot.params['id'];
+
+    if (id) {
+      this.bannerDataService
+        .getBanner(id)
+        .pipe(take(1))
+        .subscribe(banner => {
+          this.initialBanner = banner;
+        });
+    } else {
+      this.initialBanner = EmptyBanner;
+    }
   }
 
-  public saveBanner(banner: Banner): void {
+  public saveBanner(banner: FullBanner): void {
     if (this.isLoading) {
       return;
     }

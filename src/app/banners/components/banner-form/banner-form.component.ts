@@ -3,7 +3,7 @@ import {Urls} from '../../../../assets/configs/urls';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Patterns} from '../../../core/utils/patterns';
 import {Category} from '../../../categories/model/category.model';
-import {Banner} from '../../models/banner.model';
+import {FullBanner} from '../../models/full-banner.model';
 
 @Component({
   selector: 'app-banner-form',
@@ -16,13 +16,15 @@ export class BannerFormComponent implements OnInit {
   public readonly filesToAccept = 'image/*';
 
   @Input() isLoading = false;
-  @Input() set initial(banner: Banner) {
+  @Input() set initial(banner: FullBanner) {
+    this.initialCategoryIds = banner.categories;
     this.bannerForm = this.getBannerFormGroup(banner);
   }
-  @Output() banner: EventEmitter<Banner> = new EventEmitter<Banner>();
+  @Output() banner: EventEmitter<FullBanner> = new EventEmitter<FullBanner>();
 
   public bannerForm: FormGroup;
   public isUploadingImages = false;
+  public initialCategoryIds: Array<string> = [];
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -55,7 +57,7 @@ export class BannerFormComponent implements OnInit {
     Object.values(bannerForm.controls).forEach(control => control.markAsDirty());
   }
 
-  private getBannerFormGroup(banner: Banner): FormGroup {
+  private getBannerFormGroup(banner: FullBanner): FormGroup {
     return this.formBuilder.group({
       lat: [banner.lat, [Validators.required, Validators.pattern(Patterns.DECIMAL)]],
       lng: [banner.lng, [Validators.required, Validators.pattern(Patterns.DECIMAL)]],

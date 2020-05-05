@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Banner} from '../../models/banner.model';
+import {FullBanner} from '../../models/full-banner.model';
 import {BannerDataService} from '../../services/banner-data.service';
 import {take} from 'rxjs/operators';
 
@@ -10,8 +10,8 @@ import {take} from 'rxjs/operators';
 })
 export class BannersHomeComponent implements OnInit {
 
-  public banners: Array<Banner> = [];
-  public filtered: Array<Banner> = [];
+  public banners: Array<FullBanner> = [];
+  public filtered: Array<FullBanner> = [];
 
   constructor(private bannerDataService: BannerDataService) { }
 

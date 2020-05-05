@@ -11,15 +11,19 @@ export class BannerDataService {
 
   constructor(private dataService: DataService) { }
 
-  public createBanner(bannerData): Observable<any> {
-    return this.dataService.post(Urls.BANNERS, bannerData);
-  }
-
   public getBanners(): Observable<Array<FullBanner>> {
     return this.dataService.get(Urls.BANNERS);
   }
 
   public getBanner(id: string): Observable<FullBanner> {
     return this.dataService.get(`${Urls.BANNER}/${id}`);
+  }
+
+  public createBanner(bannerData): Observable<FullBanner> {
+    return this.dataService.post(Urls.BANNERS, bannerData);
+  }
+
+  public editBanner(id: string, banner: FullBanner): Observable<FullBanner> {
+    return this.dataService.post(`${Urls.BANNER}/${id}`, banner);
   }
 }

@@ -14,15 +14,15 @@ export class DataService {
     return this.httpClient.get(Urls.ROOT + url + '?' + this.toGetParams(params));
   }
 
-  public post(url: string, body: object = {}) {
+  public post(url: string, body: object = {}): Observable<any> {
     return this.httpClient.post(Urls.ROOT + url, body);
   }
 
-  public put(url: string, body: object = {}) {
+  public put(url: string, body: object = {}): Observable<any> {
     return this.httpClient.put(Urls.ROOT + url, body);
   }
 
-  public delete(url: string) {
+  public delete(url: string): Observable<any> {
     return this.httpClient.delete(Urls.ROOT + url);
   }
 

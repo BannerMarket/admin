@@ -13,25 +13,28 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class BannersEditComponent implements OnInit {
 
+  public isAddingNew = false;
   public isLoading = false;
   public initialBanner: FullBanner;
+  public id = '';
 
   constructor(private bannerDataService: BannerDataService,
               private activatedRoute: ActivatedRoute,
               private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.params['id'];
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.isAddingNew = !this.id;
 
-    if (id) {
+    if (this.isAddingNew) {
+      this.initialBanner = EmptyBanner;
+    } else {
       this.bannerDataService
-        .getBanner(id)
+        .getBanner(this.id)
         .pipe(take(1))
         .subscribe(banner => {
           this.initialBanner = banner;
         });
-    } else {
-      this.initialBanner = EmptyBanner;
     }
   }
 
@@ -42,13 +45,11 @@ export class BannersEditComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.bannerDataService
-      .createBanner(banner)
-      .pipe(take(1))
-      .subscribe(
-        () => this.showSuccess(),
-          error => this.displayError(error),
-        () => this.isLoading = false);
+    if (this.isAddingNew) {
+      this.addNew(banner);
+    } else {
+      this.editOld(this.id, banner);
+    }
   }
 
   private showSuccess(): void {
@@ -58,5 +59,25 @@ export class BannersEditComponent implements OnInit {
   private displayError(error: any): void {
     console.error(error);
     this.notificationsService.pushNotification(new AppNotification(AppNotificationType.error, 'Could not update banner'));
+  }
+
+  private addNew(banner: FullBanner): void {
+    this.bannerDataService
+      .createBanner(banner)
+      .pipe(take(1))
+      .subscribe(
+        () => this.showSuccess(),
+        error => this.displayError(error),
+        () => this.isLoading = false);
+  }
+
+  private editOld(id: string, banner: FullBanner) {
+    this.bannerDataService
+      .editBanner(id, banner)
+      .pipe(take(1))
+      .subscribe(
+        () => this.showSuccess(),
+        error => this.displayError(error),
+        () => this.isLoading = false);
   }
 }

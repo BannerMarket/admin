@@ -1,0 +1,15 @@
+<app-modal #modal [contentRef]="categoryModal"
+           [title]="title"></app-modal>
+
+<ng-template #categoryModal>
+  <div>
+    <p>{{description}}</p>
+
+    <div class="flex--align-center">
+      <button class="button-rounded button-rounded--primary button-margin flex--fill"
+              (click)="onConfirm($event)">Yes</button>
+      <button class="button-rounded button-rounded--primary button-margin button-rounded--greyscale flex--fill"
+              (click)="close($event)">Cancel</button>
+    </div>
+  </div>
+</ng-template>

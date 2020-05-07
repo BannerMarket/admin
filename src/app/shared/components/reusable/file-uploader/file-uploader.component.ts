@@ -81,7 +81,7 @@ export class FileUploaderComponent implements OnInit, OnDestroy {
     this.dataService.post(this.uploadUrl, formData)
       .pipe(take(1))
       .subscribe(
-        (result: Array<UploadResult>) => this.fileUploadSuccess(result),
+        (result: Array<UploadResult>) => this.fileUploadSuccess(result, files),
         error => {
                 console.error(error);
                 this.fileUploadError(files);
@@ -89,12 +89,21 @@ export class FileUploaderComponent implements OnInit, OnDestroy {
         () => this.endUploading());
   }
 
-  private fileUploadSuccess(result: Array<UploadResult>): void {
+  private fileUploadSuccess(result: Array<UploadResult>, allFiles: FileList): void {
+    const notUploaded = Array.from(allFiles)
+      .filter(file => !result.some(res => res.fileName === file.name));
+
     result.forEach(res => {
       const fileUpload: FileUpload = this.filesUploads
         .find(_fileUpload => _fileUpload.file.name === res.fileName);
 
       fileUpload.status = res.error ? FileUploadStatus.ERROR : FileUploadStatus.UPLOADED;
+    });
+
+    notUploaded.forEach(file => {
+      this.filesUploads
+        .find(_fileUpload => _fileUpload.file.name === file.name)
+        .status = FileUploadStatus.ERROR;
     });
 
     this.files.emit(result

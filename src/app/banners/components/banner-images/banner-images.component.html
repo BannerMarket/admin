@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="title">
+      <p>Images</p>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="input">
+      <app-image-list [imageUrls]="imageUrls" (delete)="onDelete($event)"></app-image-list>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="input">
+      <app-file-uploader [uploadUrl]="uploadUrl + '/' + bannerId"
+                         [filesToAccept]="filesToAccept"
+                         (files)="onAddImages($event)">
+      </app-file-uploader>
+    </div>
+  </div>
+</div>
+
+<app-confirmation-modal [title]="'Confirm action'"
+                        [description]="'Do you want to delete this image permanently?'">
+</app-confirmation-modal>

@@ -27,7 +27,7 @@
 
   <div class="col-sm-6">
     <div class="input">
-      <app-category-input (categories)="updateCategories($event)" [selected]="initialCategoryIds"></app-category-input>
+      <app-category-input (categories)="updateCategories($event)" [selected]="initialBanner.categories"></app-category-input>
     </div>
   </div>
 
@@ -76,35 +76,8 @@
 
   <!-- ------------------------------------------------------------------------------- -->
 
-  <div class="col-sm-12">
-    <div class="title">
-      <p>Images</p>
-    </div>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="input">
-      <img *ngFor="let image of imageUrls" [src]="image | safeUrl" alt="" style="height: 100px">
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <div class="input">
-      <app-file-uploader [uploadUrl]="uploadUrl"
-                         [filesToAccept]="filesToAccept"
-                         (files)="onAddImages($event)"
-                         (uploading)="isUploadingImages = true"
-                         (uploaded)="isUploadingImages = false"></app-file-uploader>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-  </div>
-
-  <!-- ------------------------------------------------------------------------------- -->
-
   <div class="col-sm-6">
     <button class="button-rounded button-rounded--primary button-rounded--form full-width"
-            [ngClass]="{'button-rounded--greyscale': isUploadingImages || bannerForm.invalid}">Save</button>
+            [ngClass]="{'button-rounded--greyscale': bannerForm.invalid}">Save</button>
   </div>
 </form>

@@ -15,6 +15,8 @@ import {CategorySelectionComponent} from './components/reusable/category-selecti
 import { CategoryInputComponent } from './components/category-input/category-input.component';
 import { FileUploaderComponent } from './components/reusable/file-uploader/file-uploader.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { ImageListComponent } from './components/image-list/image-list.component';
+import { ConfirmationModalComponent } from './components/reusable/confrimation-modal/confirmation-modal.component';
 
 @NgModule({
   imports: [
@@ -37,6 +39,8 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     CategoryInputComponent,
     FileUploaderComponent,
     SafeUrlPipe,
+    ImageListComponent,
+    ConfirmationModalComponent,
   ],
   exports: [
     SideMenuComponent,
@@ -52,6 +56,8 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     CategoryInputComponent,
     FileUploaderComponent,
     SafeUrlPipe,
+    ImageListComponent,
+    ConfirmationModalComponent,
   ]
 })
 export class SharedModule { }

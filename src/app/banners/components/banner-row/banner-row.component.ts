@@ -3,7 +3,7 @@ import {FullBanner} from '../../models/full-banner.model';
 import {BannerDataService} from '../../services/banner-data.service';
 import {NotificationsService} from '../../../shared/components/reusable/notifications/notifications.service';
 import {AppNotificationType} from '../../../shared/components/reusable/notifications/models/notification.model';
-import {take} from 'rxjs/operators';
+import {take, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-banner-row',
@@ -13,6 +13,7 @@ import {take} from 'rxjs/operators';
 export class BannerRowComponent implements OnInit {
 
   @Input() banner: FullBanner;
+  @Input() isHeader = false;
 
   public deleting = false;
 
@@ -28,6 +29,7 @@ export class BannerRowComponent implements OnInit {
     this.deleting = true;
     this.bannerDataService.deleteBanner(this.banner._id)
       .pipe(take(1))
+      .pipe(tap(console.log))
       .subscribe(
         () => this.showSuccess('Banner is deleted'),
         error => this.showError('Could not delete banner', error),

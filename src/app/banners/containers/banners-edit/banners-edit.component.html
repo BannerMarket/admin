@@ -3,3 +3,11 @@
                  [isLoading]="isLoading"
                  (banner)="saveBanner($event)">
 </app-banner-form>
+
+<app-banner-images *ngIf="initialBanner && id"
+                   [imageUrls]="initialBanner.images"
+                   [bannerId]="id"
+                   (imagesAdded)="addImages($event)"
+                   (deleteImg)="deleteImg($event)">
+</app-banner-images>
+

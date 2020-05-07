@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Urls} from '../../../../assets/configs/urls';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Patterns} from '../../../core/utils/patterns';
 import {Category} from '../../../categories/model/category.model';
@@ -12,32 +11,24 @@ import {FullBanner} from '../../models/full-banner.model';
 })
 export class BannerFormComponent implements OnInit {
 
-  public readonly uploadUrl = Urls.BANNER_IMAGES;
-  public readonly filesToAccept = 'image/*';
-
   @Input() isLoading = false;
   @Input() set initial(banner: FullBanner) {
-    this.initialCategoryIds = banner.categories;
+    this.initialBanner = banner;
     this.bannerForm = this.getBannerFormGroup(banner);
   }
   @Output() banner: EventEmitter<FullBanner> = new EventEmitter<FullBanner>();
 
   public bannerForm: FormGroup;
-  public isUploadingImages = false;
-  public initialCategoryIds: Array<string> = [];
+  public initialBanner: FullBanner;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() { }
 
-  public get imageUrls(): Array<string> {
-    return this.bannerForm.controls['images'].value;
-  }
-
   public saveBanner(): void {
     this.markAsDirty(this.bannerForm);
 
-    if (this.bannerForm.invalid || this.isUploadingImages || this.isLoading) {
+    if (this.bannerForm.invalid || this.isLoading) {
       return;
     }
 
@@ -47,10 +38,6 @@ export class BannerFormComponent implements OnInit {
   public updateCategories(categories: Array<Category>): void {
     const categoryIds = categories.map(category => category._id);
     this.bannerForm.controls['categories'].patchValue(categoryIds);
-  }
-
-  public onAddImages(imageUrls: Array<string>): void {
-    this.bannerForm.controls['images'].patchValue([...this.imageUrls, ...imageUrls]);
   }
 
   private markAsDirty(bannerForm: FormGroup): void {
@@ -68,7 +55,6 @@ export class BannerFormComponent implements OnInit {
       shortDescriptionEn: [banner.shortDescriptionEn, [Validators.required]],
       fullDescriptionGe: [banner.fullDescriptionGe, [Validators.required]],
       fullDescriptionEn: [banner.fullDescriptionEn, [Validators.required]],
-      images: [banner.images]
     });
   }
 }

@@ -9,6 +9,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { BannerRowComponent } from './components/banner-row/banner-row.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { BannerFormComponent } from './components/banner-form/banner-form.component';
+import { BannerImagesComponent } from './components/banner-images/banner-images.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BannerFormComponent } from './components/banner-form/banner-form.compon
     BannersHomeComponent,
     BannersEditComponent,
     BannerRowComponent,
-    BannerFormComponent
+    BannerFormComponent,
+    BannerImagesComponent
   ]
 })
 export class BannersModule { }

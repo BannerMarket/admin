@@ -11,4 +11,9 @@ export class Utils {
   public static concatReducer<T>(acc: Array<T>, curr: Array<T>): Array<T> {
     return acc.concat(curr);
   }
+
+  static getFileName(fileUrl: string): string {
+    const tokens = fileUrl.split('/');
+    return tokens[tokens.length - 1];
+  }
 }

@@ -27,7 +27,11 @@ export class BannerDataService {
     return this.dataService.post(`${Urls.BANNER}/${id}`, banner);
   }
 
-  public deleteBanner(id: string) {
+  public deleteBanner(id: string): Observable<any> {
     return this.dataService.delete(`${Urls.BANNER}/${id}`);
+  }
+
+  public deleteImages(imgNames: Array<string>, id: string): Observable<any> {
+    return this.dataService.post(`${Urls.BANNER_REMOVE_IMAGES}/${id}`, {imgNames});
   }
 }

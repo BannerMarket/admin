@@ -1,0 +1,40 @@
+@import "../../../../styles";
+
+.row {
+  margin: 0 6px 0 6px !important;
+}
+
+.col-sm-4 {
+  padding: 6px 6px 0 6px !important;
+}
+
+.list {
+  border: solid 1px color(input-border);
+  border-radius: $border-radius;
+  padding: 6px 0;
+  box-sizing: border-box;
+  width: 100%;
+
+  &__item {
+    position: relative;
+  }
+
+  &__button {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+  }
+
+  &__icon {
+    height: 16px;
+  }
+
+  &__image {
+    width: 100%;
+  }
+}
+
+.placeholder-text {
+  padding: 12px;
+  opacity: 0.6;
+}

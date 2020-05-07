@@ -64,7 +64,7 @@
   &__content {
     padding: 48px;
     max-height: 80vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 }

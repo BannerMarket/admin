@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!isHeader" class="row">
   <div class="col-sm-2">
     <input class="listing__input" disabled type="text" [value]="banner._id"/>
   </div>
@@ -27,5 +27,23 @@
         {{deleting ? 'Wait...' : 'Delete'}}
       </button>
     </div>
+  </div>
+</div>
+
+<div *ngIf="isHeader" class="row header">
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="'Banner id'"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="'Title'"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="'Short description'"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="'Categories'"/>
+  </div>
+  <div class="col-sm-2">
+    <input class="listing__input" disabled type="text" [value]="'Images'"/>
   </div>
 </div>

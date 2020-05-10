@@ -16,7 +16,11 @@
       <app-banner-row [isHeader]="true"></app-banner-row>
     </div>
     <div *cdkVirtualFor="let banner of filtered" class="list__item">
-      <app-banner-row [banner]="banner"></app-banner-row>
+      <app-banner-row [banner]="banner" (delete)="onDelete($event)"></app-banner-row>
     </div>
   </cdk-virtual-scroll-viewport>
 </div>
+
+<app-confirmation-modal [title]="'Confirm action'"
+                        [description]="'Do you want to delete this banner permanently?'">
+</app-confirmation-modal>

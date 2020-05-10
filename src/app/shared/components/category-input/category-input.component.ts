@@ -65,8 +65,6 @@ export class CategoryInputComponent implements OnInit {
   }
 
   private selectInitial(groups: Array<TreeNode<Category>>): void {
-    console.log(groups, this.selected);
-
     const selectedCategories = groups
       .map(group => group.children)
       .reduce(Utils.concatReducer)

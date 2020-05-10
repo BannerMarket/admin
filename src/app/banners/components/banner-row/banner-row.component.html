@@ -23,7 +23,7 @@
       </button>
       <button class="listing__button listing__button--delete flex--center flex--fill cursor--pointer"
               [disabled]="deleting"
-              (click)="deleteBanner()">
+              (click)="onDelete()">
         {{deleting ? 'Wait...' : 'Delete'}}
       </button>
     </div>

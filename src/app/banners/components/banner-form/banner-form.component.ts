@@ -48,6 +48,8 @@ export class BannerFormComponent implements OnInit {
     return this.formBuilder.group({
       lat: [banner.lat, [Validators.required, Validators.pattern(Patterns.DECIMAL)]],
       lng: [banner.lng, [Validators.required, Validators.pattern(Patterns.DECIMAL)]],
+      directionsGe: [banner.directionsGe, [Validators.required]],
+      directionsEn: [banner.directionsEn, [Validators.required]],
       categories: [banner.categories],
       titleGe: [banner.titleGe, [Validators.required]],
       titleEn: [banner.titleEn, [Validators.required]],

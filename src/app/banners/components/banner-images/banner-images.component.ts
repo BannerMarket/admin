@@ -29,6 +29,7 @@ export class BannerImagesComponent implements OnInit {
   ngOnInit() { }
 
   public onAddImages(imageUrls: Array<string>): void {
+    this.notificationsService.notify(AppNotificationType.success, 'Images added');
     this.imagesAdded.emit(imageUrls);
   }
 

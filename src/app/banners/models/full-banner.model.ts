@@ -1,6 +1,8 @@
 export interface FullBanner {
   lat: number | string;
   lng: number | string;
+  directionsGe: string;
+  directionsEn: string;
   categories: Array<string>;
   titleGe: string;
   titleEn: string;
@@ -15,6 +17,8 @@ export interface FullBanner {
 export const EmptyBanner: FullBanner = {
   lat: '',
   lng: '',
+  directionsGe: '',
+  directionsEn: '',
   categories: [],
   titleGe: '',
   titleEn: '',

@@ -1,0 +1,16 @@
+@import "../../price-requests.component";
+
+.row, .col-sm-2, .col-sm-4 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.header {
+  .listing__input {
+    font-weight: bold;
+  }
+}
+
+.listing__button {
+  width: 100%;
+}

@@ -1,0 +1,23 @@
+@import "../../styles";
+
+.list {
+  height: 600px;
+
+  &__item {
+    border-top: solid 1px color(input-border);
+    border-left: solid 1px color(input-border);
+    border-right: solid 1px color(input-border);
+
+    &:last-child {
+      border-bottom: solid 1px color(input-border);
+    }
+
+    &--highlighted {
+      background-color: color(grey-shade);
+    }
+
+    &:nth-child(2n) {
+      background-color: color(grey-shade);
+    }
+  }
+}

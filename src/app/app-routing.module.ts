@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'banners',
     loadChildren: './banners/banners.module#BannersModule',
   },
+  {
+    path: 'price-requests',
+    loadChildren: './price-requests/price-requests.module#PriceRequestsModule',
+  },
 ];
 
 @NgModule({

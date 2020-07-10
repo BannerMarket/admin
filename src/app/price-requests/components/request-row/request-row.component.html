@@ -1,0 +1,31 @@
+<div *ngIf="isHeader" class="row header">
+  <div class="col-sm-4">
+    <input class="listing__input" disabled type="text" [value]="'Request id'"/>
+  </div>
+  <div class="col-sm-4">
+    <input class="listing__input" disabled type="text" [value]="'Banner id'"/>
+  </div>
+  <div class="col-sm-3">
+    <input class="listing__input" disabled type="text" [value]="'Phone'"/>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<div *ngIf="!isHeader && priceRequest" class="row">
+  <div class="col-sm-4">
+    <input class="listing__input" disabled type="text" [value]="priceRequest._id"/>
+  </div>
+  <div class="col-sm-4">
+    <input class="listing__input" disabled type="text" [value]="priceRequest.bannerId"/>
+  </div>
+  <div class="col-sm-3">
+    <input class="listing__input" disabled type="text" [value]="priceRequest.phone"/>
+  </div>
+  <div class="col-sm-1 no-padding no-margin">
+    <button class="listing__button listing__button--delete flex--center flex--fill cursor--pointer"
+            [disabled]="deleting"
+            (click)="onDelete()">
+      {{deleting ? 'Wait...' : 'Delete'}}
+    </button>
+  </div>
+</div>

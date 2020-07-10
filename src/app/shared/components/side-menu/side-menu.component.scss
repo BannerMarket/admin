@@ -32,6 +32,7 @@
 
       svg {
         stroke: color(brand-main) !important;
+        fill: color(brand-main) !important;
       }
     }
 
@@ -40,8 +41,9 @@
       width: 16px;
       margin: 0 16px 0 16px;
       stroke: color(text-main);
+      fill: color(text-main);
 
-      transition: stroke 0.3s;
+      transition: stroke 0.3s, fill 0.3s;
     }
   }
 }

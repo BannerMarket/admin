@@ -14,4 +14,8 @@ export class Urls {
   public static readonly BANNER = 'banners/full/banner';
 
   public static readonly PRICE_REQUESTS = 'price-request/requests';
+
+  public static readonly HERO_IMAGES = 'hero-images';
+  public static readonly HERO_IMAGES_UPLOAD = 'hero-images/upload';
+  public static readonly HERO_IMAGES_DELETE = 'hero-images/delete';
 }

@@ -18,4 +18,7 @@ export class Urls {
   public static readonly HERO_IMAGES = 'hero-images';
   public static readonly HERO_IMAGES_UPLOAD = 'hero-images/upload';
   public static readonly HERO_IMAGES_DELETE = 'hero-images/delete';
+
+  public static readonly PROMOTED_BANNERS = 'promoted-banners';
+  public static readonly LOGIN = 'auth/login';
 }

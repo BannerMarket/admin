@@ -6,7 +6,7 @@
     {{placeholder}}
   </label>
 
-  <ng-container *ngIf="type === 'text'">
+  <ng-container *ngIf="type === 'text' || type === 'password'">
     <input class="input"
            #formInput
            [type]="type"

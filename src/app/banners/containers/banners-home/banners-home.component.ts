@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FullBanner} from '../../models/full-banner.model';
 import {BannerDataService} from '../../services/banner-data.service';
-import {take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {NotificationsService} from '../../../shared/components/reusable/notifications/notifications.service';
 import {AppNotificationType} from '../../../shared/components/reusable/notifications/models/notification.model';
 import {ConfirmationModalComponent} from '../../../shared/components/reusable/confrimation-modal/confirmation-modal.component';
+import {Banner} from '../../models/banner.model';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-banners-home',
@@ -15,12 +17,16 @@ export class BannersHomeComponent implements OnInit {
 
   @ViewChild(ConfirmationModalComponent) modal: ConfirmationModalComponent;
 
+  private promotedBanners: BehaviorSubject<Array<Banner>> = new BehaviorSubject([]);
   public banners: Array<FullBanner> = [];
   public filtered: Array<FullBanner> = [];
 
-  constructor(private bannerDataService: BannerDataService, private notificationsService: NotificationsService) { }
+  constructor(private bannerDataService: BannerDataService,
+              private notificationsService: NotificationsService) { }
 
   ngOnInit() {
+    this.getPromotedBanners();
+
     this.bannerDataService
       .getBanners()
       .pipe(take(1))
@@ -58,5 +64,31 @@ export class BannersHomeComponent implements OnInit {
   private showError(message: string, error: any): void {
     console.error(error);
     this.notificationsService.notify(AppNotificationType.error, message);
+  }
+
+  public isPromoted(_id: string): Observable<boolean> {
+    return this.promotedBanners.pipe(map(banners => {
+      return banners.some(banner => banner._id === _id);
+    }));
+  }
+
+  public onIsPromotedClick(isPromoted: boolean, bannerId: string): void {
+    if (isPromoted) {
+      this.bannerDataService
+        .makePromoted(bannerId)
+        .pipe(take(1))
+        .subscribe(console.log);
+    } else {
+      this.bannerDataService
+        .removePromoted(bannerId)
+        .pipe(take(1))
+        .subscribe(console.log);
+    }
+  }
+
+  private getPromotedBanners(): void {
+    this.bannerDataService.getPromotedBanners()
+      .pipe(take(1))
+      .subscribe(banners => this.promotedBanners.next(banners));
   }
 }

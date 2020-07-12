@@ -16,7 +16,10 @@
       <app-banner-row [isHeader]="true"></app-banner-row>
     </div>
     <div *cdkVirtualFor="let banner of filtered" class="list__item">
-      <app-banner-row [banner]="banner" (delete)="onDelete($event)"></app-banner-row>
+      <app-banner-row [banner]="banner"
+                      [isPromoted]="isPromoted(banner._id) | async"
+                      (delete)="onDelete($event)"
+                      (isPromotedClick)="onIsPromotedClick($event, banner._id)"></app-banner-row>
     </div>
   </cdk-virtual-scroll-viewport>
 </div>

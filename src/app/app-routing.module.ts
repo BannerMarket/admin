@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'price-requests',
     loadChildren: './price-requests/price-requests.module#PriceRequestsModule',
   },
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule',
+  },
 ];
 
 @NgModule({

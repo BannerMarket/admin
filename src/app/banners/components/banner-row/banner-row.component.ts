@@ -10,8 +10,10 @@ export class BannerRowComponent implements OnInit {
 
   @Input() banner: FullBanner;
   @Input() isHeader = false;
+  @Input() isPromoted = false;
 
   @Output() delete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() isPromotedClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public deleting = false;
 
@@ -21,5 +23,9 @@ export class BannerRowComponent implements OnInit {
 
   public onDelete(): void {
     this.delete.emit(this.banner._id);
+  }
+
+  public onToggle(): void {
+    this.isPromotedClick.emit(!this.isPromoted);
   }
 }

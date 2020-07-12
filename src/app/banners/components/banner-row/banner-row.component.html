@@ -11,8 +11,11 @@
   <div class="col-sm-2">
     <input class="listing__input" disabled type="text" [value]="banner.categories.length + ' categories'"/>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-1">
     <input class="listing__input" disabled type="text" [value]="banner.images.length + ' images'"/>
+  </div>
+  <div class="col-sm-1 flex--center">
+    <input type="checkbox" [checked]="isPromoted" (change)="onToggle()">
   </div>
 
   <div class="col-sm-2">
@@ -43,7 +46,10 @@
   <div class="col-sm-2">
     <input class="listing__input" disabled type="text" [value]="'Categories'"/>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-1">
     <input class="listing__input" disabled type="text" [value]="'Images'"/>
+  </div>
+  <div class="col-sm-1">
+    <input class="listing__input" disabled type="text" [value]="'Promoted'"/>
   </div>
 </div>

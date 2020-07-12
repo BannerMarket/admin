@@ -4,10 +4,9 @@ import { HomeComponent } from './home.component';
 import {HomeRoutingModule} from './home-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import { HeroImagesComponent } from './components/hero-images/hero-images.component';
-import { PromotedBannersComponent } from './components/promoted-banners/promoted-banners.component';
 
 @NgModule({
-  declarations: [HomeComponent, HeroImagesComponent, PromotedBannersComponent],
+  declarations: [HomeComponent, HeroImagesComponent],
     imports: [
         CommonModule,
         HomeRoutingModule,

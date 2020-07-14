@@ -1,0 +1,18 @@
+<h1 class="page-title">Register</h1>
+<div class="row">
+  <div class="col-sm-4">
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <div class="input">
+        <app-input placeholder="username" formControlName="username"></app-input>
+      </div>
+      <div class="input">
+        <app-input placeholder="password" formControlName="password" type="password"></app-input>
+      </div>
+      <div class="button-rounded button-rounded--primary"
+           [ngClass]="{'button-rounded--greyscale': !form.valid}"
+           (click)="register()">
+        Register
+      </div>
+    </form>
+  </div>
+</div>

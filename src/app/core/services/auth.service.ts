@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {DataService} from './data.service';
 import {Urls} from '../../../assets/configs/urls';
 
@@ -8,11 +8,18 @@ import {Urls} from '../../../assets/configs/urls';
 })
 export class AuthService {
 
-  public isLoggedIn: Subject<boolean> = new Subject<boolean>();
-
   constructor(private dataService: DataService) { }
 
-  public login(username: string, password: string): Observable<null> {
-    return this.dataService.get(Urls.LOGIN, {username, password});
+  public login(username: string, password: string): Observable<{accessToken: string}> {
+    return this.dataService.post(Urls.LOGIN, {username, password});
+  }
+
+  public logout(): Observable<null> {
+    localStorage.removeItem('accessToken');
+    return new BehaviorSubject(null);
+  }
+
+  public register(username: string, password: string): Observable<null> {
+    return this.dataService.post(Urls.REGISTER, {username, password});
   }
 }

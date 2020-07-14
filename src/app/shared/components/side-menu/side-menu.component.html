@@ -30,10 +30,14 @@
     <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>ionicons-v5-e</title><path d='M336,264.13V436c0,24.3-19.05,44-42.95,44H107C83.05,480,64,460.3,64,436V172a44.26,44.26,0,0,1,44-44h94.12a24.55,24.55,0,0,1,17.49,7.36l109.15,111A25.4,25.4,0,0,1,336,264.13Z' style='fill:none;stroke-linejoin:round;stroke-width:32px'/><path d='M200,128V236a28.34,28.34,0,0,0,28,28H336' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><path d='M176,128V76a44.26,44.26,0,0,1,44-44h94a24.83,24.83,0,0,1,17.61,7.36l109.15,111A25.09,25.09,0,0,1,448,168V340c0,24.3-19.05,44-42.95,44H344' style='fill:none;stroke-linejoin:round;stroke-width:32px'/><path d='M312,32V140a28.34,28.34,0,0,0,28,28H448' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/></svg>
     Banners
   </a>
-
-<!--  <a class="menu__item cursor&#45;&#45;pointer"-->
-<!--     [routerLinkActive]="'menu__item&#45;&#45;active'">-->
-<!--    <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>ionicons-v5-e</title><rect x='48' y='80' width='416' height='352' rx='48' ry='48' style='fill:none;stroke-linejoin:round;stroke-width:32px'/><circle cx='336' cy='176' r='32' style='fill:none;stroke-miterlimit:10;stroke-width:32px'/><path d='M304,335.79,213.34,245.3A32,32,0,0,0,169.47,244L48,352' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><path d='M224,432,347.34,308.66a32,32,0,0,1,43.11-2L464,368' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/></svg>-->
-<!--    Sliders-->
-<!--  </a>-->
+  <a class="menu__item cursor--pointer"
+     [routerLink]="['/register']"
+     [routerLinkActive]="'menu__item--active'">
+    <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>ionicons-v5-j</title><path d='M376,144c-3.92,52.87-44,96-88,96s-84.15-43.12-88-96c-4-55,35-96,88-96S380,90,376,144Z' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><path d='M288,304c-87,0-175.3,48-191.64,138.6-2,10.92,4.21,21.4,15.65,21.4H464c11.44,0,17.62-10.48,15.65-21.4C463.3,352,375,304,288,304Z' style='fill:none;stroke-miterlimit:10;stroke-width:32px'/><line x1='88' y1='176' x2='88' y2='288' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><line x1='144' y1='232' x2='32' y2='232' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/></svg>
+    Register
+  </a>
+  <a class="menu__item cursor--pointer" (click)="logout()">
+    <svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><title>ionicons-v5-o</title><path d='M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><polyline points='368 336 448 256 368 176' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><line x1='176' y1='256' x2='432' y2='256' style='fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/></svg>
+    Logout
+  </a>
 </div>

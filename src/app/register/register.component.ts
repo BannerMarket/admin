@@ -1,24 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NotificationsService} from '../shared/components/reusable/notifications/notifications.service';
 import {AuthService} from '../core/services/auth.service';
 import {take} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {NotificationsService} from '../shared/components/reusable/notifications/notifications.service';
 import {AppNotificationType} from '../shared/components/reusable/notifications/models/notification.model';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  private form: FormGroup;
+  public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService,
               private router: Router,
-              private notificationsService: NotificationsService) { }
+              private authService: AuthService,
+              private notificationsService: NotificationsService) {
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -27,16 +28,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public login(): void {
+  public register(): void {
     if (this.form.valid) {
       const {username, password} = this.form.getRawValue();
-      this.authService.login(username, password)
+      this.authService.register(username, password)
         .pipe(take(1))
-        .subscribe(({accessToken}) => {
-          localStorage.setItem('accessToken', accessToken);
+        .subscribe(() => {
+          this.notificationsService.notify(AppNotificationType.success, 'Registered');
           this.router.navigateByUrl('/');
         }, () => {
-          this.notificationsService.notify(AppNotificationType.error, 'Can\'t log in');
+          this.notificationsService.notify(AppNotificationType.error, 'Could not register');
         });
     }
   }

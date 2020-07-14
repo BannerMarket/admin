@@ -21,4 +21,6 @@ export class Urls {
 
   public static readonly PROMOTED_BANNERS = 'promoted-banners';
   public static readonly LOGIN = 'auth/login';
+  public static readonly REGISTER = 'auth/register';
+  public static readonly IS_AUTHENTICATED = 'auth/is-authenticated';
 }

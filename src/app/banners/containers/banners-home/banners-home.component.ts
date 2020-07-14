@@ -77,12 +77,18 @@ export class BannersHomeComponent implements OnInit {
       this.bannerDataService
         .makePromoted(bannerId)
         .pipe(take(1))
-        .subscribe(console.log);
+        .subscribe(
+          () => this.notificationsService.notify(AppNotificationType.success, 'Banner is added'),
+          () => this.notificationsService.notify(AppNotificationType.error, 'Couldn\'t add banner')
+        );
     } else {
       this.bannerDataService
         .removePromoted(bannerId)
         .pipe(take(1))
-        .subscribe(console.log);
+        .subscribe(
+          () => this.notificationsService.notify(AppNotificationType.success, 'Banner is removed'),
+          () => this.notificationsService.notify(AppNotificationType.error, 'Couldn\'t remove banner')
+        );
     }
   }
 

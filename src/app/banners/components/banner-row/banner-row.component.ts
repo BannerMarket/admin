@@ -26,6 +26,7 @@ export class BannerRowComponent implements OnInit {
   }
 
   public onToggle(): void {
-    this.isPromotedClick.emit(!this.isPromoted);
+    this.isPromoted = !this.isPromoted;
+    this.isPromotedClick.emit(this.isPromoted);
   }
 }
